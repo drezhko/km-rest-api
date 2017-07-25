@@ -1,0 +1,528 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is an internal API for Kitchen Terminal Backend.\nIt is intended for Kitchen Terminal Frontend.\n",
+    "version" : "1.0.0",
+    "title" : "Eijsink Kitchen Terminal Backend API",
+    "contact" : {
+      "email" : "drezhko@yukon.cv.ua"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags" : [ {
+    "name" : "admins",
+    "description" : "Secured Admin-only calls"
+  }, {
+    "name" : "developers",
+    "description" : "Operations available to regular developers"
+  } ],
+  "paths" : {
+    "/orders" : {
+      "get" : {
+        "summary" : "Returns orders in current working shift",
+        "operationId" : "getOrdersInCurrentShift",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "get orders in current working shift",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Order"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/order/{orderId}" : {
+      "get" : {
+        "tags" : [ "developers" ],
+        "summary" : "Returns order by Id",
+        "operationId" : "getOrderById",
+        "description" : "By passing in the appropriate options, you can search for\navailable order in the system\n",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "orderId",
+          "description" : "pass an order id for looking up order",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search order by id",
+            "schema" : {
+              "$ref" : "#/definitions/Order"
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      }
+    },
+    "/inventory" : {
+      "get" : {
+        "tags" : [ "developers" ],
+        "summary" : "searches inventory",
+        "operationId" : "searchInventory",
+        "description" : "By passing in the appropriate options, you can search for\navailable inventory in the system\n",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "searchString",
+          "description" : "pass an optional search string for looking up inventory",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "in" : "query",
+          "name" : "skip",
+          "description" : "number of records to skip for pagination",
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        }, {
+          "in" : "query",
+          "name" : "limit",
+          "description" : "maximum number of records to return",
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0,
+          "maximum" : 50
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "search results matching criteria",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/InventoryItem"
+              }
+            }
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "admins" ],
+        "summary" : "adds an inventory item",
+        "operationId" : "addInventory",
+        "description" : "Adds an item to the system",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "inventoryItem",
+          "description" : "Inventory item to add",
+          "schema" : {
+            "$ref" : "#/definitions/InventoryItem"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "item created"
+          },
+          "400" : {
+            "description" : "invalid input, object invalid"
+          },
+          "409" : {
+            "description" : "an existing item already exists"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Order" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "example" : 20365
+        },
+        "orderNumber" : {
+          "type" : "string",
+          "format" : "int32",
+          "example" : 1234
+        },
+        "createDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "example" : "2017-07-25T09:12:33.001Z"
+        },
+        "posDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "example" : "2017-07-25T09:13:13.001Z"
+        },
+        "lastOpenedTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "example" : "2017-07-25T09:13:13.001Z"
+        },
+        "autoReopenedTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "example" : "2017-07-25T09:13:13.001Z"
+        },
+        "pickupTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "example" : "2017-07-25T09:13:13.001Z"
+        },
+        "lastStartCatTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "example" : "2017-07-25T09:13:13.001Z"
+        },
+        "lastFinishCatTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "example" : "2017-07-25T09:13:13.001Z"
+        },
+        "priorityTime" : {
+          "type" : "string",
+          "format" : "date-time",
+          "example" : "2017-07-25T09:13:13.001Z"
+        },
+        "price" : {
+          "type" : "number",
+          "format" : "float",
+          "example" : 12.5
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "priority" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1,
+          "maximum" : 12,
+          "example" : 0
+        },
+        "lastPriority" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1,
+          "maximum" : 12,
+          "example" : 0
+        },
+        "autoPriority" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : -1,
+          "maximum" : 12,
+          "example" : 0
+        },
+        "priorityCategory" : {
+          "type" : "string"
+        },
+        "couverts" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 2
+        },
+        "tableNumber" : {
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 9999,
+          "example" : 14
+        },
+        "orderStatus" : {
+          "$ref" : "#/definitions/OrderStatus"
+        },
+        "orderType" : {
+          "$ref" : "#/definitions/OrderType"
+        },
+        "clerk" : {
+          "$ref" : "#/definitions/Clerk"
+        },
+        "lastClerk" : {
+          "$ref" : "#/definitions/Clerk"
+        },
+        "terminalIdentifier" : {
+          "type" : "string",
+          "description" : "The unique identified of terminal from where the order originates. Null if the order belongs to the current terminal.\n"
+        },
+        "workingAmount" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The number of seconds the order was in work (from the moment of creating till finishing)\n"
+        },
+        "printFailed" : {
+          "type" : "boolean"
+        },
+        "delayed" : {
+          "type" : "boolean"
+        },
+        "categories" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/OrderCategory"
+          }
+        }
+      }
+    },
+    "OrderStatus" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "enum" : [ "NW", "PP", "PR", "PF", "RS", "PM", "CN", "HD", "PN", "SD" ],
+          "description" : "Order Status code:\n  * NW - new order\n  * PP - order in preparation (preliminary stage before start)\n  * PR - order in progress (started)\n  * PF - prefinished (preliminary stage before finish on chef terminal)\n  * RS - ready to serve (preliminary stage before finish on waiter terminal)\n  * PM - finished order\n  * CN - canceled order\n  * HD - order is on hold\n  * PN - pending order (created but not yet active)\n  * SD - scheduled order (not active until specific time)\n"
+        }
+      },
+      "description" : "Indicates current status of the order\n"
+    },
+    "OrderType" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "enum" : [ "EAT_HERE", "PICK_UP", "DELIVER" ],
+          "description" : "Order Type:\n  * EAT_HERE - order is consumed on place\n  * PICK_UP - order is being picked up by the customer\n  * DELIVER - order is delivered to the customer's address\n"
+        }
+      }
+    },
+    "OrderItemUpdStatus" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "enum" : [ "AD", "UP", "CN" ],
+          "description" : "Order item update status:\n  * AD - order item added\n  * UP - order item updated\n  * CN - order item canceled\n"
+        }
+      },
+      "description" : "Indicates current update status of order item\n"
+    },
+    "Clerk" : {
+      "type" : "object",
+      "properties" : {
+        "clerkNumber" : {
+          "type" : "string",
+          "format" : "int32"
+        },
+        "clerkName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Cook" : {
+      "type" : "object",
+      "properties" : {
+        "cookNumber" : {
+          "type" : "string",
+          "format" : "int32"
+        },
+        "cookName" : {
+          "type" : "string"
+        }
+      }
+    },
+    "OrderCategory" : {
+      "type" : "object",
+      "required" : [ "id", "code", "name" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "sequence" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/OrderItem"
+          }
+        }
+      }
+    },
+    "OrderItem" : {
+      "type" : "object",
+      "required" : [ "id" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "uuid" : {
+          "type" : "string",
+          "format" : "uuid"
+        },
+        "pluNumber" : {
+          "type" : "string",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "quantity" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "price" : {
+          "type" : "number",
+          "format" : "float",
+          "example" : 12.5
+        },
+        "couverts" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : 2
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "terminalIdentifier" : {
+          "type" : "string",
+          "description" : "The unique identified of terminal from where the item originates. Null if the item belongs to the current terminal.\n"
+        },
+        "prepareTime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "startTime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "readyTime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "finishTime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "mpStartTime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "mpFinishTime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "autoPrintedTime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "old" : {
+          "type" : "boolean"
+        },
+        "ignoredPrestart" : {
+          "type" : "boolean"
+        },
+        "orderItemStatus" : {
+          "$ref" : "#/definitions/OrderStatus"
+        },
+        "orderItemUpdStatus" : {
+          "$ref" : "#/definitions/OrderItemUpdStatus"
+        },
+        "orderItemMisenplaceStatus" : {
+          "$ref" : "#/definitions/OrderItemUpdStatus"
+        },
+        "cook" : {
+          "$ref" : "#/definitions/Cook"
+        },
+        "misEnPlace" : {
+          "type" : "boolean"
+        },
+        "longPrepare" : {
+          "type" : "boolean"
+        },
+        "filterable" : {
+          "type" : "boolean"
+        },
+        "condiments" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Condiment"
+          }
+        }
+      }
+    },
+    "Condiment" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "pluNumber" : {
+          "type" : "string",
+          "format" : "int32"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "quantity" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "price" : {
+          "type" : "number",
+          "format" : "float",
+          "example" : 12.5
+        }
+      }
+    },
+    "InventoryItem" : {
+      "type" : "object",
+      "required" : [ "id", "name", "manufacturer", "releaseDate" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "format" : "uuid",
+          "example" : "d290f1ee-6c54-4b01-90e6-d701748f0851"
+        },
+        "name" : {
+          "type" : "string",
+          "example" : "Widget Adapter"
+        },
+        "releaseDate" : {
+          "type" : "string",
+          "format" : "int32",
+          "example" : "2016-08-29T09:12:33.001Z"
+        },
+        "manufacturer" : {
+          "$ref" : "#/definitions/Manufacturer"
+        }
+      }
+    },
+    "Manufacturer" : {
+      "required" : [ "name" ],
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "example" : "ACME Corporation"
+        },
+        "homePage" : {
+          "type" : "string",
+          "format" : "url",
+          "example" : "https://www.acme-corp.com"
+        },
+        "phone" : {
+          "type" : "string",
+          "example" : "408-867-5339"
+        }
+      }
+    }
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/drezhko/KitchenTerminal/1.0.0",
+  "schemes" : [ "https" ]
+}
