@@ -86,9 +86,7 @@
                   "example" : 64203
                 },
                 "status" : {
-                  "schema" : {
-                    "$ref" : "#/definitions/OrderStatus"
-                  }
+                  "$ref" : "#/definitions/OrderStatus"
                 }
               }
             }
