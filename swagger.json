@@ -69,9 +69,26 @@
       "patch" : {
         "summary" : "Updates specific order items",
         "description" : "By passing in a set of changes in JSON payload it is possible\nto update a set of specific order items\n",
+        "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "in" : "body"
+          "in" : "body",
+          "name" : "itemStatuses",
+          "description" : "array of order items status changes",
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "properties" : {
+                "id" : {
+                  "type" : "number",
+                  "format" : "int64"
+                },
+                "status" : {
+                  "$ref" : "#/definitions/OrderStatus"
+                }
+              }
+            }
+          }
         } ],
         "responses" : {
           "200" : {
