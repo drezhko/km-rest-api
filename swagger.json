@@ -65,7 +65,7 @@
         }
       }
     },
-    "/order/{orderId}/logs" : {
+    "/order/{orderId}/history" : {
       "get" : {
         "summary" : "Returns history for order with specified Id",
         "description" : "By passing in id of an order, a set of order history records is retrieved\n",
@@ -78,7 +78,10 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK"
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/HistoryRecord"
+            }
           },
           "400" : {
             "description" : "bad input parameter"
