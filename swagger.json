@@ -65,6 +65,27 @@
         }
       }
     },
+    "/order/{orderId}/logs" : {
+      "get" : {
+        "summary" : "Returns history for order with specified Id",
+        "description" : "By passing in id of an order, a set of order history records is retrieved\n",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "orderId",
+          "description" : "pass an order id for retrieving order history",
+          "required" : true,
+          "type" : "integer"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      }
+    },
     "/orderItems" : {
       "patch" : {
         "summary" : "Updates specific order items",
@@ -515,6 +536,26 @@
           "type" : "number",
           "format" : "float",
           "example" : 12.5
+        }
+      }
+    },
+    "HistoryRecord" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "logTime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "code" : {
+          "type" : "string",
+          "enum" : [ "ITEM_ADDED", "ITEM_DELETED", "ORDER_MOVED", "PRIORITY_CHANGED", "CATEGORY_PRIORITY_CHANGED", "UNKNOWN" ]
+        },
+        "additionalData" : {
+          "type" : "string"
         }
       }
     },
