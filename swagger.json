@@ -13,15 +13,16 @@
     }
   },
   "tags" : [ {
-    "name" : "admins",
-    "description" : "Secured Admin-only calls"
+    "name" : "order",
+    "description" : "Operations with order tickets"
   }, {
-    "name" : "developers",
-    "description" : "Operations available to regular developers"
+    "name" : "journal",
+    "description" : "Operations with orders journal"
   } ],
   "paths" : {
     "/orders" : {
       "get" : {
+        "tags" : [ "order" ],
         "summary" : "Returns orders in current working shift",
         "operationId" : "getOrdersInCurrentShift",
         "produces" : [ "application/json" ],
@@ -40,7 +41,7 @@
     },
     "/order/{orderId}" : {
       "get" : {
-        "tags" : [ "developers" ],
+        "tags" : [ "order" ],
         "summary" : "Returns order by Id",
         "operationId" : "getOrderById",
         "description" : "By passing in the appropriate options, you can search for\navailable order in the system\n",
@@ -67,6 +68,7 @@
     },
     "/order/{orderId}/history" : {
       "get" : {
+        "tags" : [ "order" ],
         "summary" : "Returns history for order with specified Id",
         "description" : "By passing in id of an order, a set of order history records is retrieved\n",
         "parameters" : [ {
@@ -91,6 +93,7 @@
     },
     "/orderItems" : {
       "patch" : {
+        "tags" : [ "order" ],
         "summary" : "Updates specific order items",
         "description" : "By passing in a set of changes in JSON payload it is possible\nto update a set of specific order items\n",
         "consumes" : [ "application/json" ],
