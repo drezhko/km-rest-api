@@ -82,7 +82,7 @@
               "properties" : {
                 "required" : [ "id", "status" ],
                 "id" : {
-                  "type" : "number",
+                  "type" : "integer",
                   "format" : "int64",
                   "example" : 64203
                 },
