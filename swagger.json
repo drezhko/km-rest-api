@@ -78,15 +78,15 @@
           "schema" : {
             "type" : "array",
             "items" : {
-              "properties" : {
-                "required" : [ "id", "status" ],
-                "id" : {
-                  "type" : "number",
-                  "format" : "int64",
-                  "example" : 64203
-                },
-                "status" : {
-                  "$ref" : "#/definitions/OrderStatus"
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "required" : [ "id" ],
+                  "id" : {
+                    "type" : "number",
+                    "format" : "int64",
+                    "example" : 64203
+                  }
                 }
               }
             }
