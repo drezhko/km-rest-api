@@ -18,6 +18,9 @@
   }, {
     "name" : "journal",
     "description" : "Operations with orders journal"
+  }, {
+    "name" : "statistics",
+    "description" : "Statistics related operations"
   } ],
   "paths" : {
     "/orders" : {
@@ -126,6 +129,24 @@
           },
           "400" : {
             "description" : "bad input parameter"
+          }
+        }
+      }
+    },
+    "/articleStats" : {
+      "get" : {
+        "tags" : [ "statistics" ],
+        "summary" : "Gets article statistics",
+        "description" : null,
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/ArticleStat"
+              }
+            }
           }
         }
       }
@@ -490,6 +511,51 @@
         },
         "additionalData" : {
           "type" : "string"
+        }
+      }
+    },
+    "ArticleStat" : {
+      "type" : "object",
+      "properties" : {
+        "categoryName" : {
+          "type" : "string"
+        },
+        "categorySequence" : {
+          "type" : "integer"
+        },
+        "articleName" : {
+          "type" : "string"
+        },
+        "articleNumber" : {
+          "type" : "string"
+        },
+        "inProgressCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "newCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "misEnPlaceCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "misEnPlaceFinishedCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "perTableCounts" : {
+          "type" : "string"
+        },
+        "pluInfo" : {
+          "type" : "string"
+        },
+        "condiments" : {
+          "type" : "string"
+        },
+        "header" : {
+          "type" : "boolean"
         }
       }
     }
