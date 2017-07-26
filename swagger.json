@@ -137,7 +137,7 @@
       "get" : {
         "tags" : [ "statistics" ],
         "summary" : "Gets article statistics",
-        "description" : null,
+        "description" : "Returns statistics for articles of currently active orders",
         "responses" : {
           "200" : {
             "description" : "OK",
