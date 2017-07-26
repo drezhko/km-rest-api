@@ -65,6 +65,24 @@
         }
       }
     },
+    "/orderItems" : {
+      "patch" : {
+        "summary" : "Updates specific order items",
+        "description" : "By passing in a set of changes in JSON payload it is possible\nto update a set of specific order items\n",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
+      }
+    },
     "/inventory" : {
       "get" : {
         "tags" : [ "developers" ],
