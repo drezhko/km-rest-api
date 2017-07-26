@@ -79,7 +79,7 @@
             "type" : "array",
             "items" : {
               "properties" : {
-                "required" : "-id -status",
+                "required" : [ "id", "status" ],
                 "id" : {
                   "type" : "number",
                   "format" : "int64",
