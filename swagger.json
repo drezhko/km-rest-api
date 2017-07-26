@@ -79,8 +79,8 @@
             "type" : "array",
             "items" : {
               "type" : "object",
+              "required" : [ "id", "status" ],
               "properties" : {
-                "required" : [ "id", "status" ],
                 "id" : {
                   "type" : "integer",
                   "format" : "int64",
