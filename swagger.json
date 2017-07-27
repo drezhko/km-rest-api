@@ -157,6 +157,9 @@
                 },
                 "status" : {
                   "$ref" : "#/definitions/OrderStatus"
+                },
+                "cook" : {
+                  "$ref" : "#/definitions/Clerk"
                 }
               }
             }
