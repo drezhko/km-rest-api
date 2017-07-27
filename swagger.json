@@ -71,7 +71,7 @@
       "patch" : {
         "tags" : [ "order" ],
         "summary" : "Modifies order attributes",
-        "description" : "",
+        "description" : "By passing in order id, it is possible to update order attributes\nprovided in request body\n",
         "parameters" : [ {
           "in" : "path",
           "name" : "orderId",
