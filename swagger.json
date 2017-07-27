@@ -67,6 +67,43 @@
             "description" : "bad input parameter"
           }
         }
+      },
+      "patch" : {
+        "tags" : [ "order" ],
+        "summary" : "Modifies order attributes",
+        "description" : "",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "orderId",
+          "description" : "pass an order id for looking up order",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "in" : "body",
+          "name" : "orderChange",
+          "description" : "changes of order priority attributes",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "priority" : {
+                "type" : "integer"
+              },
+              "delayed" : {
+                "type" : "boolean"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : null
+          },
+          "400" : {
+            "description" : "bad input parameter"
+          }
+        }
       }
     },
     "/order/{orderId}/history" : {
