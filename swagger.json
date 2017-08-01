@@ -328,7 +328,7 @@
     },
     "OrderStatus" : {
       "type" : "string",
-      "enum" : [ "NW", "PP", "PR", "PF", "RS", "PM", "CN", "HD", "PN", "SD" ],
+      "enum" : [ "NEW", "PP", "IN_PROGRESS", "PF", "RS", "FINISHED", "CANCELLED", "ON_HOLD", "PENDING", "SCHEDULED", "UNKNOWN" ],
       "description" : "Order Status code:\n  * NW - new order\n  * PP - order in preparation (preliminary stage before start)\n  * PR - order in progress (started)\n  * PF - prefinished (preliminary stage before finish on chef terminal)\n  * RS - ready to serve (preliminary stage before finish on waiter terminal)\n  * PM - finished order\n  * CN - canceled order\n  * HD - order is on hold\n  * PN - pending order (created but not yet active)\n  * SD - scheduled order (not active until specific time)\n"
     },
     "OrderType" : {
