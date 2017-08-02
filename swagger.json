@@ -159,7 +159,7 @@
                   "$ref" : "#/definitions/OrderItemStatus"
                 },
                 "cook" : {
-                  "$ref" : "#/definitions/Clerk"
+                  "$ref" : "#/definitions/Cook"
                 }
               }
             }
