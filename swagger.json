@@ -142,7 +142,7 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
-          "name" : "itemChange",
+          "name" : "orderItemChange",
           "description" : "array of changes for order items",
           "schema" : {
             "type" : "array",
