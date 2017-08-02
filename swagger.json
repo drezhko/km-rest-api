@@ -263,7 +263,7 @@
           "maximum" : 12,
           "example" : 0
         },
-        "lastPriority" : {
+        "previousPriority" : {
           "type" : "integer",
           "format" : "int32",
           "minimum" : -1,
