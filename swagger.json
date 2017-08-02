@@ -142,8 +142,8 @@
         "produces" : [ "application/json" ],
         "parameters" : [ {
           "in" : "body",
-          "name" : "itemStatuses",
-          "description" : "array of new status for order items",
+          "name" : "itemChange",
+          "description" : "array of changes for order items",
           "schema" : {
             "type" : "array",
             "items" : {
