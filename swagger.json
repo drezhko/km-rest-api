@@ -280,7 +280,7 @@
         "priorityCategory" : {
           "type" : "string"
         },
-        "couverts" : {
+        "persons" : {
           "type" : "integer",
           "format" : "int32",
           "example" : 2
