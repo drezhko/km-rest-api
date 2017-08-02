@@ -156,7 +156,7 @@
                   "example" : 64203
                 },
                 "status" : {
-                  "$ref" : "#/definitions/OrderStatus"
+                  "$ref" : "#/definitions/OrderItemStatus"
                 },
                 "cook" : {
                   "$ref" : "#/definitions/Clerk"
