@@ -333,8 +333,8 @@
     },
     "OrderType" : {
       "type" : "string",
-      "enum" : [ "EAT_HERE", "PICK_UP", "DELIVER" ],
-      "description" : "Order Type:\n  * EAT_HERE - order is consumed on place\n  * PICK_UP - order is being picked up by the customer\n  * DELIVER - order is delivered to the customer's address\n"
+      "enum" : [ "EAT_HERE", "PICK_UP", "DELIVER", "UNKNOWN" ],
+      "description" : "Order Type:\n  * EAT_HERE - order is consumed on place\n  * PICK_UP - order is being picked up by the customer\n  * DELIVER - order is delivered to the customer's address\n  * UNKNOWN - order type is unknown\n"
     },
     "OrderItemStatus" : {
       "type" : "string",
@@ -506,7 +506,7 @@
           "type" : "integer",
           "format" : "int64"
         },
-        "pluNumber" : {
+        "code" : {
           "type" : "string",
           "format" : "int32"
         },
