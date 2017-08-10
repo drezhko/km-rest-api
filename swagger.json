@@ -338,13 +338,13 @@
     },
     "OrderItemStatus" : {
       "type" : "string",
-      "enum" : [ "NW", "PP", "PR", "PF", "RS", "PM" ],
-      "description" : "Order item update status:\n  * NW - new\n  * PP - pre-prepared (preliminary stage before start)\n  * PR - in progress (started)\n  * PF - pre-finished (preliminary stage before finish on chef terminal)\n  * RS - ready-to-serve (preliminary stage before finish on waiter terminal)\n  * PM - finished\n"
+      "enum" : [ "NEW", "PRE_PREPARED", "IN_PROGRESS", "PRE_FINISHED", "READY_TO_SERVE", "FINISHED" ],
+      "description" : "Order item update status:\n  * NEW - new\n  * PRE_PREPARED - pre-prepared (preliminary stage before start)\n  * IN_PROGRESS - in progress (started)\n  * PRE_FINISHED - pre-finished (preliminary stage before finish on chef terminal)\n  * READY_TO_SERVE - ready-to-serve (preliminary stage before finish on waiter terminal)\n  * FINISHED - finished\n"
     },
     "OrderItemUpdStatus" : {
       "type" : "string",
-      "enum" : [ "AD", "UP", "CN" ],
-      "description" : "Order item update status:\n  * AD - order item added\n  * UP - order item updated\n  * CN - order item canceled\n"
+      "enum" : [ "ADDED", "UPDATED", "CANCELED" ],
+      "description" : "Order item update status:\n  * ADDED - order item added\n  * UPDATED - order item updated\n  * CANCELED - order item canceled\n"
     },
     "Clerk" : {
       "type" : "object",
