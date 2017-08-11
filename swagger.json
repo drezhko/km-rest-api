@@ -133,6 +133,18 @@
         }
       }
     },
+    "/order/{orderId}/category/{categoryId}/changeStatus" : {
+      "post" : {
+        "tags" : [ "order" ],
+        "summary" : "Change status of a category of specific order",
+        "description" : null,
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
     "/orderItems" : {
       "patch" : {
         "tags" : [ "order" ],
