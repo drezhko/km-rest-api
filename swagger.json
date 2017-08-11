@@ -156,9 +156,7 @@
           "name" : "itemStatus",
           "description" : "a new status of category",
           "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/OrderItemStatus"
-          }
+          "type" : "string"
         } ],
         "responses" : {
           "200" : {
