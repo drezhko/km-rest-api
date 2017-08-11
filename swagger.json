@@ -138,11 +138,7 @@
         "tags" : [ "order" ],
         "summary" : "Change status of a category of specific order",
         "description" : "By passing in id of an order and id of category, the status of category is changed\n",
-        "responses" : {
-          "200" : {
-            "description" : "OK"
-          }
-        },
+        "operationId" : "changeOrderCategoryStatus",
         "parameters" : [ {
           "in" : "path",
           "name" : "orderId",
@@ -163,7 +159,12 @@
           "schema" : {
             "$ref" : "#/definitions/OrderItemStatus"
           }
-        } ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
       }
     },
     "/orderItems" : {
