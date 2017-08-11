@@ -142,7 +142,20 @@
           "200" : {
             "description" : "OK"
           }
-        }
+        },
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "orderId",
+          "description" : "pass an order id",
+          "required" : true,
+          "type" : "integer"
+        }, {
+          "in" : "path",
+          "name" : "categoryId",
+          "description" : "pass a category id",
+          "required" : true,
+          "type" : "integer"
+        } ]
       }
     },
     "/orderItems" : {
