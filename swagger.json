@@ -133,7 +133,7 @@
         }
       }
     },
-    "/order/{orderId}/category/{categoryId}/changeStatus" : {
+    "/order/{orderId}/category/{categoryId}/changeStatus/{itemStatus}" : {
       "post" : {
         "tags" : [ "order" ],
         "summary" : "Change status of a category of specific order",
@@ -155,6 +155,14 @@
           "description" : "pass a category id for changing its status",
           "required" : true,
           "type" : "integer"
+        }, {
+          "in" : "path",
+          "name" : "itemStatus",
+          "description" : "a new status of category",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/OrderItemStatus"
+          }
         } ]
       }
     },
