@@ -137,7 +137,7 @@
       "post" : {
         "tags" : [ "order" ],
         "summary" : "Change status of a category of specific order",
-        "description" : null,
+        "description" : "By passing in id of an order and id of category, the status of category is changed\n",
         "responses" : {
           "200" : {
             "description" : "OK"
@@ -152,7 +152,7 @@
         }, {
           "in" : "path",
           "name" : "categoryId",
-          "description" : "pass a category id",
+          "description" : "pass a category id for changing its status",
           "required" : true,
           "type" : "integer"
         } ]
