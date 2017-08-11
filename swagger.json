@@ -144,7 +144,12 @@
           "name" : "orderId",
           "description" : "pass an order id",
           "required" : true,
-          "type" : "integer"
+          "type" : "array",
+          "uniqueItems" : true,
+          "minItems" : 1,
+          "items" : {
+            "type" : "integer"
+          }
         }, {
           "in" : "path",
           "name" : "categoryId",
